@@ -8,11 +8,22 @@ class MyProvider extends Component {//need to use provider to wrap the whole app
         player: [],
         result: ''
     };
+
+    addPlayerHandler = (name) => {
+        this.setState((preState, props) => ({
+            player: [
+                ...preState.player,
+                name
+            ]
+        }))
+    }
+
     render() {
         return (
             <MyContext.Provider
                 value={{
-                    state: this.state
+                    state: this.state,
+                    addPlayer: this.addPlayerHandler
                 }}
             >
                 {this.props.children}

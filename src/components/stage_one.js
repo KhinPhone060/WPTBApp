@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Input, ListItem, Button, Text } from 'react-native-elements';
@@ -7,6 +7,22 @@ import MyContext from '../context/my_context';
 
 const StageOne = () => {
     const context = useContext(MyContext);
+
+    const renderPlayer = () => (
+        context.state.player.map((item, idx) => (
+            <ListItem
+                key={idx}
+                bottomDivider
+                style={{ width: '100%' }}
+            >
+                <ListItem.Chevron />
+                <ListItem.Content>
+                    <ListItem.Title>{item}</ListItem.Title>
+                </ListItem.Content>
+            </ListItem>
+        ))
+    )
+
     return (
         <>
             <Formik
@@ -18,7 +34,7 @@ const StageOne = () => {
                         .required('Please enter the names')
                 })}//yup instance and pass the object
                 onSubmit={(values, { resetForm }) => { //get the values and resetForm clear the input
-                    alert(values.player)
+                    context.addPlayer(values.player);
                     resetForm()
                 }}
             >
@@ -51,6 +67,17 @@ const StageOne = () => {
                             title="Add Player"
                             onPress={handleSubmit}
                         />
+                        <View style={{ padding: 20, width: '100%' }}>
+                            {context.state.player && context.state.player.length > 0 ?
+                                <>
+                                    <Text>List of players</Text>
+                                    {renderPlayer()}
+
+                                </>
+                                :
+                                null
+                            }
+                        </View>
                     </>
                 )}
             </Formik>
