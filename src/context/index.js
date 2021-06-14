@@ -18,12 +18,17 @@ class MyProvider extends Component {//need to use provider to wrap the whole app
         }))
     }
 
+    removePlayerHandler = () => {
+
+    }
+
     render() {
         return (
             <MyContext.Provider
                 value={{
                     state: this.state,
-                    addPlayer: this.addPlayerHandler
+                    addPlayer: this.addPlayerHandler,
+                    removePlayer: this.removePlayerHandler
                 }}
             >
                 {this.props.children}
