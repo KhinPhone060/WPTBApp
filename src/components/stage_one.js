@@ -14,6 +14,7 @@ const StageOne = () => {
                 key={idx}
                 bottomDivider
                 style={{ width: '100%' }}
+                onLongPress={() => context.removePlayer(idx)}
             >
                 <ListItem.Chevron />
                 <ListItem.Content>

@@ -18,8 +18,10 @@ class MyProvider extends Component {//need to use provider to wrap the whole app
         }))
     }
 
-    removePlayerHandler = () => {
-
+    removePlayerHandler = (idx) => {
+        let newArray = this.state.player
+        newArray.splice(idx, 1);
+        this.setState({ player: newArray })
     }
 
     render() {
