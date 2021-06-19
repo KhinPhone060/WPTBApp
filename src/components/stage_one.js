@@ -4,6 +4,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Input, ListItem, Button, Text } from 'react-native-elements';
 import MyContext from '../context/my_context';
+import MainLogo from '../assets/utils/tools';
 
 const StageOne = () => {
     const context = useContext(MyContext);
@@ -41,7 +42,7 @@ const StageOne = () => {
             >
                 {({ handleChange, handleBlur, handleSubmit, values, touched, errors }) => (
                     <>
-                        <Text>Who Pay The Bill?</Text>
+                        <MainLogo />
                         <Input
                             placeholder="Enter name"
                             leftIcon={{ type: 'antdesign', name: 'adduser' }}
@@ -78,6 +79,11 @@ const StageOne = () => {
                                 :
                                 null
                             }
+                            <Button
+                                buttonStyle={{ width: '100%', backgroundColor: '#DB3EB1' }}
+                                title="Get the Loser"
+                                onPress={() => context.nextStage()}
+                            />
                         </View>
                     </>
                 )}
